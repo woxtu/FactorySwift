@@ -11,4 +11,14 @@ import Foundation
 public struct Attribute {
     let name: String
     let generator: Generator
+    
+    public func generate() -> Any {
+        return self.generator.apply()
+    }
+}
+
+infix operator =>
+
+func => (name: String, generator: Generator) -> Attribute {
+    return Attribute(name: name, generator: generator)
 }
