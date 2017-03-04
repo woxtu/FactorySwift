@@ -11,6 +11,7 @@
 		430179831E6B410D00601C0B /* Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430179811E6B410D00601C0B /* Attribute.swift */; };
 		430179841E6B410D00601C0B /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430179821E6B410D00601C0B /* Generator.swift */; };
 		430179861E6B412A00601C0B /* Factoryable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430179851E6B412A00601C0B /* Factoryable.swift */; };
+		439F325A1E6B63D40066D4C3 /* GeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439F32581E6B639E0066D4C3 /* GeneratorTests.swift */; };
 		OBJ_28 /* FactorySwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* FactorySwiftTests.swift */; };
 		OBJ_30 /* FactorySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* FactorySwift.framework */; };
 /* End PBXBuildFile section */
@@ -30,6 +31,7 @@
 		430179811E6B410D00601C0B /* Attribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Attribute.swift; path = FactorySwift/Attribute.swift; sourceTree = "<group>"; };
 		430179821E6B410D00601C0B /* Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Generator.swift; path = FactorySwift/Generator.swift; sourceTree = "<group>"; };
 		430179851E6B412A00601C0B /* Factoryable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Factoryable.swift; path = FactorySwift/Factoryable.swift; sourceTree = "<group>"; };
+		439F32581E6B639E0066D4C3 /* GeneratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratorTests.swift; sourceTree = "<group>"; };
 		OBJ_12 /* FactorySwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactorySwiftTests.swift; sourceTree = "<group>"; };
 		OBJ_14 /* FactorySwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FactorySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_15 /* FactorySwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = FactorySwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_12 /* FactorySwiftTests.swift */,
+				439F32581E6B639E0066D4C3 /* GeneratorTests.swift */,
 			);
 			name = FactorySwiftTests;
 			path = Tests/FactorySwiftTests;
@@ -195,6 +198,7 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_28 /* FactorySwiftTests.swift in Sources */,
+				439F325A1E6B63D40066D4C3 /* GeneratorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
