@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		430179801E6B3C7B00601C0B /* FactorySwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4301797F1E6B3C7B00601C0B /* FactorySwift.swift */; };
+		430179831E6B410D00601C0B /* Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430179811E6B410D00601C0B /* Attribute.swift */; };
+		430179841E6B410D00601C0B /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430179821E6B410D00601C0B /* Generator.swift */; };
+		430179861E6B412A00601C0B /* Factoryable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430179851E6B412A00601C0B /* Factoryable.swift */; };
 		OBJ_28 /* FactorySwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* FactorySwiftTests.swift */; };
 		OBJ_30 /* FactorySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* FactorySwift.framework */; };
 /* End PBXBuildFile section */
@@ -24,6 +27,9 @@
 
 /* Begin PBXFileReference section */
 		4301797F1E6B3C7B00601C0B /* FactorySwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FactorySwift.swift; path = FactorySwift/FactorySwift.swift; sourceTree = "<group>"; };
+		430179811E6B410D00601C0B /* Attribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Attribute.swift; path = FactorySwift/Attribute.swift; sourceTree = "<group>"; };
+		430179821E6B410D00601C0B /* Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Generator.swift; path = FactorySwift/Generator.swift; sourceTree = "<group>"; };
+		430179851E6B412A00601C0B /* Factoryable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Factoryable.swift; path = FactorySwift/Factoryable.swift; sourceTree = "<group>"; };
 		OBJ_12 /* FactorySwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactorySwiftTests.swift; sourceTree = "<group>"; };
 		OBJ_14 /* FactorySwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FactorySwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_15 /* FactorySwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = FactorySwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,7 +81,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -83,7 +89,6 @@
 				OBJ_10 /* Tests */,
 				OBJ_13 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -97,7 +102,10 @@
 		OBJ_8 /* FactorySwift */ = {
 			isa = PBXGroup;
 			children = (
+				430179811E6B410D00601C0B /* Attribute.swift */,
+				430179851E6B412A00601C0B /* Factoryable.swift */,
 				4301797F1E6B3C7B00601C0B /* FactorySwift.swift */,
+				430179821E6B410D00601C0B /* Generator.swift */,
 			);
 			name = FactorySwift;
 			path = Sources;
@@ -159,7 +167,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_13 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -175,6 +183,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				430179861E6B412A00601C0B /* Factoryable.swift in Sources */,
+				430179841E6B410D00601C0B /* Generator.swift in Sources */,
+				430179831E6B410D00601C0B /* Attribute.swift in Sources */,
 				430179801E6B3C7B00601C0B /* FactorySwift.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

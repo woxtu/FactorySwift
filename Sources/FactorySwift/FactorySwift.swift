@@ -6,7 +6,13 @@
 //  Copyright (c) 2017 woxtu. All rights reserved.
 //
 
-struct FactorySwift {
+import Foundation
 
-    var text = "Hello, World!"
+public struct FactorySwift {
+    public static func define<T: Factoryable>(_ name: String, of type: T.Type, with attributeBlock: @escaping () -> [Attribute] = { [] }) {
+    }
+    
+    public static func build<T: Factoryable>(_ name: String, of type: T.Type, with overrideBlock: @escaping () -> [Attribute] = { [] }) -> T {
+        return T.construct(from: [:])
+    }
 }
