@@ -43,3 +43,47 @@ public struct FactorySwift {
         return buffer
     }
 }
+
+extension FactorySwift {
+    public static func define<T: Factoryable>(_ name: String, of type: T.Type, with attributes: [Attribute]) {
+        self.define(name, of: type) { attributes }
+    }
+    
+    public static func define<T: Factoryable>(_ name: String, of type: T.Type) {
+        self.define(name, of: type) { [] }
+    }
+    
+    public static func build<T: Factoryable>(_ name: String, of type: T.Type, with overrides: [Attribute]) -> T {
+        return self.build(name, of: type) { overrides }
+    }
+
+    public static func build<T: Factoryable>(_ name: String, of type: T.Type) -> T {
+        return self.build(name, of: type) { [] }
+    }
+}
+
+extension FactorySwift {
+    public static func define<T: Factoryable>(of type: T.Type, with attributeBlock: @escaping () -> [Attribute]) {
+        self.define("", of: type, with: attributeBlock)
+    }
+
+    public static func define<T: Factoryable>(of type: T.Type, with attributes: [Attribute]) {
+        self.define("", of: type, with: attributes)
+    }
+    
+    public static func define<T: Factoryable>(of type: T.Type) {
+        self.define("", of: type)
+    }
+
+    public static func build<T: Factoryable>(of type: T.Type, with overrideBlock: @escaping () -> [Attribute]) -> T {
+        return self.build("", of: type, with: overrideBlock)
+    }
+
+    public static func build<T: Factoryable>(of type: T.Type, with overrides: [Attribute]) -> T {
+        return self.build("", of: type, with: overrides)
+    }
+    
+    public static func build<T: Factoryable>(of type: T.Type) -> T {
+        return self.build("", of: type)
+    }
+}
