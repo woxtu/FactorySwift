@@ -15,11 +15,11 @@ public struct FactorySwift {
         self.defineBlock = defineBlock
     }
     
-    public static func define<T: Factoryable>(of type: T.Type, with defineBlock: @escaping () -> [Attribute]) -> FactorySwift {
+    public static func define<T: Factoryable>(type: T.Type, with defineBlock: @escaping () -> [Attribute]) -> FactorySwift {
         return FactorySwift(defineBlock: defineBlock)
     }
     
-    public func build<T: Factoryable>(of type: T.Type, with overrideBlock: @escaping () -> [Attribute]) -> T {
+    public func build<T: Factoryable>(type: T.Type, with overrideBlock: @escaping () -> [Attribute]) -> T {
         var buffer = [String : Any]()
         for attribute in FactorySwift.merge(attributes: self.defineBlock(), with: overrideBlock()) {
             buffer[attribute.name] = attribute.generate()
@@ -39,19 +39,19 @@ public struct FactorySwift {
 }
 
 extension FactorySwift {
-    public static func define<T: Factoryable>(of type: T.Type, with attributes: [Attribute]) -> FactorySwift {
-        return self.define(of: type) { attributes }
+    public static func define<T: Factoryable>(type: T.Type, with attributes: [Attribute]) -> FactorySwift {
+        return self.define(type: type) { attributes }
     }
     
-    public static func define<T: Factoryable>(of type: T.Type) -> FactorySwift {
-        return self.define(of: type) { [] }
+    public static func define<T: Factoryable>(type: T.Type) -> FactorySwift {
+        return self.define(type: type) { [] }
     }
     
-    public func build<T: Factoryable>(of type: T.Type, with overrides: [Attribute]) -> T {
-        return self.build(of: type) { overrides }
+    public func build<T: Factoryable>(type: T.Type, with overrides: [Attribute]) -> T {
+        return self.build(type: type) { overrides }
     }
 
-    public func build<T: Factoryable>(of type: T.Type) -> T {
-        return self.build(of: type) { [] }
+    public func build<T: Factoryable>(type: T.Type) -> T {
+        return self.build(type: type) { [] }
     }
 }

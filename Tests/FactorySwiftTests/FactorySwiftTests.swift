@@ -21,33 +21,33 @@ extension Friend : Factoryable {
 
 class FactorySwiftTests: XCTestCase {
     func testBuildWithBlock() {
-        let factory = FactorySwift.define(of: Friend.self) {
+        let factory = FactorySwift.define(type: Friend.self) {
             return [
                 "name" => .generate { "Serval" }
             ]
         }
         
-        let friend = factory.build(of: Friend.self)
+        let friend = factory.build(type: Friend.self)
         XCTAssertEqual(friend.name, "Serval")
     }
     
     func testBuildWithArray() {
-        let factory = FactorySwift.define(of: Friend.self, with: [
+        let factory = FactorySwift.define(type: Friend.self, with: [
             "name" => .generate { "Serval" }
         ])
         
-        let friend = factory.build(of: Friend.self)
+        let friend = factory.build(type: Friend.self)
         XCTAssertEqual(friend.name, "Serval")
     }
     
     func testBuildWithOverride() {
-        let factory = FactorySwift.define(of: Friend.self) {
+        let factory = FactorySwift.define(type: Friend.self) {
             return [
                 "name" => .generate { "Serval" }
             ]
         }
         
-        let friend = factory.build(of: Friend.self, with: [
+        let friend = factory.build(type: Friend.self, with: [
             "name" => .generate { "Jaguar" }
         ])
         XCTAssertEqual(friend.name, "Jaguar")
