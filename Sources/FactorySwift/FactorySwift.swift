@@ -24,7 +24,7 @@ public struct FactorySwift {
     }
     
     public func build<T: Factoryable>(type: T.Type, with overrideBlock: @escaping () -> [Attribute]) -> T {
-        return T.construct(from: self.attributes(with: overrideBlock))
+        return T.construct(from: Attributes(rawValues: self.attributes(with: overrideBlock)))
     }
 }
 

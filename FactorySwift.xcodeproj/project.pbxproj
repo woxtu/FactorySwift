@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4300386C1E6DD46100CB7E27 /* Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4300386B1E6DD46100CB7E27 /* Attributes.swift */; };
 		430179801E6B3C7B00601C0B /* FactorySwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4301797F1E6B3C7B00601C0B /* FactorySwift.swift */; };
 		430179831E6B410D00601C0B /* Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430179811E6B410D00601C0B /* Attribute.swift */; };
 		430179841E6B410D00601C0B /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430179821E6B410D00601C0B /* Generator.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4300386B1E6DD46100CB7E27 /* Attributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Attributes.swift; path = FactorySwift/Attributes.swift; sourceTree = "<group>"; };
 		4301797F1E6B3C7B00601C0B /* FactorySwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FactorySwift.swift; path = FactorySwift/FactorySwift.swift; sourceTree = "<group>"; };
 		430179811E6B410D00601C0B /* Attribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Attribute.swift; path = FactorySwift/Attribute.swift; sourceTree = "<group>"; };
 		430179821E6B410D00601C0B /* Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Generator.swift; path = FactorySwift/Generator.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				430179811E6B410D00601C0B /* Attribute.swift */,
+				4300386B1E6DD46100CB7E27 /* Attributes.swift */,
 				430179851E6B412A00601C0B /* Factoryable.swift */,
 				4301797F1E6B3C7B00601C0B /* FactorySwift.swift */,
 				430179821E6B410D00601C0B /* Generator.swift */,
@@ -189,6 +192,7 @@
 				430179861E6B412A00601C0B /* Factoryable.swift in Sources */,
 				430179841E6B410D00601C0B /* Generator.swift in Sources */,
 				430179831E6B410D00601C0B /* Attribute.swift in Sources */,
+				4300386C1E6DD46100CB7E27 /* Attributes.swift in Sources */,
 				430179801E6B3C7B00601C0B /* FactorySwift.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,5 +9,5 @@
 import Foundation
 
 public protocol Factoryable {
-    static func construct(from attributes: [String : Any]) -> Self
+    static func construct(from attributes: Attributes) -> Self
 }

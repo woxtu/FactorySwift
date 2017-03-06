@@ -14,8 +14,8 @@ struct Friend {
 }
 
 extension Friend : Factoryable {
-    static func construct(from attributes: [String : Any]) -> Friend {
-        return Friend(name: attributes["name"] as! String)
+    static func construct(from attributes: Attributes) -> Friend {
+        return Friend(name: attributes.value(for: "name"))
     }
 }
 
