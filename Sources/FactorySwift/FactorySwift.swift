@@ -11,6 +11,10 @@ import Foundation
 public struct FactorySwift {
     private let defineBlock: () -> [Attribute]
     
+    private init(defineBlock: @escaping () -> [Attribute]) {
+        self.defineBlock = defineBlock
+    }
+    
     public static func define<T: Factoryable>(of type: T.Type, with defineBlock: @escaping () -> [Attribute]) -> FactorySwift {
         return FactorySwift(defineBlock: defineBlock)
     }

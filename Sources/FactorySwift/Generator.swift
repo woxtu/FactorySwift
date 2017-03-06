@@ -11,6 +11,10 @@ import Foundation
 public struct Generator {
     internal var apply: () -> Any
     
+    private init(apply: @escaping () -> Any) {
+        self.apply = apply
+    }
+    
     public static func generate(_ f: @escaping () -> Any) -> Generator {
         return Generator { f() }
     }
