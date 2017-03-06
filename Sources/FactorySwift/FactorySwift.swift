@@ -19,23 +19,31 @@ public struct FactorySwift {
         return FactorySwift(defineBlock: defineBlock)
     }
     
-    public func build<T: Factoryable>(type: T.Type, with overrideBlock: @escaping () -> [Attribute]) -> T {
-        var buffer = [String : Any]()
-        for attribute in FactorySwift.merge(attributes: self.defineBlock(), with: overrideBlock()) {
-            buffer[attribute.name] = attribute.generate()
-        }
-        return T.construct(from: buffer)
+    public func attributes(with overrideBlock: @escaping () -> [Attribute]) -> [String : Any] {
+        return generate(from: merge(self.defineBlock(), with: overrideBlock()))
     }
     
-    private static func merge(attributes: [Attribute], with overrides: [Attribute]) -> [Attribute] {
-        var buffer = attributes
-        for override in overrides {
-            if let index = (attributes.index { $0.name == override.name }) {
-                buffer[index] = override
-            }
-        }
-        return buffer
+    public func build<T: Factoryable>(type: T.Type, with overrideBlock: @escaping () -> [Attribute]) -> T {
+        return T.construct(from: self.attributes(with: overrideBlock))
     }
+}
+
+private func merge(_ attributes1: [Attribute], with attributes2: [Attribute]) -> [Attribute] {
+    var attributes = attributes1
+    for override in attributes2 {
+        if let index = (attributes.index { $0.name == override.name }) {
+            attributes[index] = override
+        }
+    }
+    return attributes
+}
+
+private func generate(from attributes: [Attribute]) -> [String : Any] {
+    var values = [String : Any]()
+    for attribute in attributes {
+        values[attribute.name] = attribute.generate()
+    }
+    return values
 }
 
 extension FactorySwift {
@@ -47,6 +55,14 @@ extension FactorySwift {
         return self.define(type: type) { [] }
     }
     
+    public func attributes(with overrides: [Attribute]) -> [String : Any] {
+        return self.attributes { overrides }
+    }
+
+    public func attributes() -> [String : Any] {
+        return self.attributes { [] }
+    }
+
     public func build<T: Factoryable>(type: T.Type, with overrides: [Attribute]) -> T {
         return self.build(type: type) { overrides }
     }
