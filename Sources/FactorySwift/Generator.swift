@@ -9,13 +9,13 @@
 import Foundation
 
 public struct Generator {
-    internal var apply: () -> Any
+    internal var apply: (Context) -> Any
     
-    private init(apply: @escaping () -> Any) {
+    private init(apply: @escaping (Context) -> Any) {
         self.apply = apply
     }
     
     public static func generate(_ f: @escaping () -> Any) -> Generator {
-        return Generator { f() }
+        return Generator { _ in f() }
     }
 }

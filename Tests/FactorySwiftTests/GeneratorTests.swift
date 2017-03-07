@@ -11,7 +11,8 @@ import XCTest
 
 class GeneratorTests: XCTestCase {
     func testGenerate() {
+        let context = Context()
         let generator = Generator.generate { "Serval" }
-        XCTAssertEqual(generator.apply() as? String, "Serval")
+        XCTAssertEqual(generator.apply(context) as? String, "Serval")
     }
 }
