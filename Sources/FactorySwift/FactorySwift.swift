@@ -47,27 +47,15 @@ private func generate(from attributes: [Attribute]) -> [String : Any] {
 }
 
 extension FactorySwift {
-    public static func define<T: Factoryable>(type: T.Type, with attributes: [Attribute]) -> FactorySwift {
+    public static func define<T: Factoryable>(type: T.Type, with attributes: [Attribute] = []) -> FactorySwift {
         return self.define(type: type) { attributes }
     }
     
-    public static func define<T: Factoryable>(type: T.Type) -> FactorySwift {
-        return self.define(type: type) { [] }
-    }
-    
-    public func attributes(with overrides: [Attribute]) -> Attributes {
+    public func attributes(with overrides: [Attribute] = []) -> Attributes {
         return self.attributes { overrides }
     }
 
-    public func attributes() -> Attributes {
-        return self.attributes { [] }
-    }
-
-    public func build<T: Factoryable>(type: T.Type, with overrides: [Attribute]) -> T {
+    public func build<T: Factoryable>(type: T.Type, with overrides: [Attribute] = []) -> T {
         return self.build(type: type) { overrides }
-    }
-
-    public func build<T: Factoryable>(type: T.Type) -> T {
-        return self.build(type: type) { [] }
     }
 }
