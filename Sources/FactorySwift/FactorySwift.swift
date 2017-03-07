@@ -19,12 +19,12 @@ public struct FactorySwift {
         return FactorySwift(defineBlock: defineBlock)
     }
     
-    public func attributes(with overrideBlock: @escaping () -> [Attribute]) -> [String : Any] {
-        return generate(from: merge(self.defineBlock(), with: overrideBlock()))
+    public func attributes(with overrideBlock: @escaping () -> [Attribute]) -> Attributes {
+        return Attributes(rawValues: generate(from: merge(self.defineBlock(), with: overrideBlock())))
     }
     
     public func build<T: Factoryable>(type: T.Type, with overrideBlock: @escaping () -> [Attribute]) -> T {
-        return T.construct(from: Attributes(rawValues: self.attributes(with: overrideBlock)))
+        return T.construct(from: self.attributes(with: overrideBlock))
     }
 }
 
@@ -39,11 +39,11 @@ private func merge(_ attributes1: [Attribute], with attributes2: [Attribute]) ->
 }
 
 private func generate(from attributes: [Attribute]) -> [String : Any] {
-    var values = [String : Any]()
+    var rawValues = [String : Any]()
     for attribute in attributes {
-        values[attribute.name] = attribute.generate()
+        rawValues[attribute.name] = attribute.generate()
     }
-    return values
+    return rawValues
 }
 
 extension FactorySwift {
@@ -55,11 +55,11 @@ extension FactorySwift {
         return self.define(type: type) { [] }
     }
     
-    public func attributes(with overrides: [Attribute]) -> [String : Any] {
+    public func attributes(with overrides: [Attribute]) -> Attributes {
         return self.attributes { overrides }
     }
 
-    public func attributes() -> [String : Any] {
+    public func attributes() -> Attributes {
         return self.attributes { [] }
     }
 
