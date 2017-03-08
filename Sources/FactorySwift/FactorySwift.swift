@@ -8,14 +8,14 @@
 
 import Foundation
 
-public struct FactorySwift {
+public struct FactorySwift<T: Factoryable> {
     private let defineBlock: () -> [Attribute]
     
     private init(defineBlock: @escaping () -> [Attribute]) {
         self.defineBlock = defineBlock
     }
     
-    public static func define<T: Factoryable>(type: T.Type, with defineBlock: @escaping () -> [Attribute]) -> FactorySwift {
+    public static func define(type: T.Type, with defineBlock: @escaping () -> [Attribute]) -> FactorySwift<T> {
         return FactorySwift(defineBlock: defineBlock)
     }
     
@@ -24,7 +24,7 @@ public struct FactorySwift {
         return Attributes(rawValues: generate(context, from: merge(self.defineBlock(), with: overrideBlock())))
     }
     
-    public func build<T: Factoryable>(type: T.Type, with overrideBlock: @escaping () -> [Attribute]) -> T {
+    public func build(with overrideBlock: @escaping () -> [Attribute]) -> T {
         return T.construct(from: self.attributes(with: overrideBlock))
     }
 }
@@ -48,7 +48,7 @@ private func generate(_ context: Context, from attributes: [Attribute]) -> [Stri
 }
 
 extension FactorySwift {
-    public static func define<T: Factoryable>(type: T.Type, with attributes: [Attribute] = []) -> FactorySwift {
+    public static func define(type: T.Type, with attributes: [Attribute] = []) -> FactorySwift<T> {
         return self.define(type: type) { attributes }
     }
     
@@ -56,7 +56,7 @@ extension FactorySwift {
         return self.attributes { overrides }
     }
 
-    public func build<T: Factoryable>(type: T.Type, with overrides: [Attribute] = []) -> T {
-        return self.build(type: type) { overrides }
+    public func build(with overrides: [Attribute] = []) -> T {
+        return self.build { overrides }
     }
 }

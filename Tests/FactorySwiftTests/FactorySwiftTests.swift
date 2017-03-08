@@ -27,7 +27,7 @@ class FactorySwiftTests: XCTestCase {
             ]
         }
         
-        let friend = factory.build(type: Friend.self)
+        let friend = factory.build()
         XCTAssertEqual(friend.name, "Serval")
     }
     
@@ -36,7 +36,7 @@ class FactorySwiftTests: XCTestCase {
             "name" => .generate { "Serval" }
         ])
         
-        let friend = factory.build(type: Friend.self)
+        let friend = factory.build()
         XCTAssertEqual(friend.name, "Serval")
     }
     
@@ -47,7 +47,7 @@ class FactorySwiftTests: XCTestCase {
             ]
         }
         
-        let friend = factory.build(type: Friend.self, with: [
+        let friend = factory.build(with: [
             "name" => .generate { "Jaguar" }
         ])
         XCTAssertEqual(friend.name, "Jaguar")
