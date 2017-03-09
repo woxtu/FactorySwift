@@ -15,13 +15,13 @@ public struct Attributes {
         self.rawValues = rawValues
     }
     
-    public func value<T>(for key: String) -> T {
-        guard let rawValue = self.rawValues[key] else {
-            fatalError("Cannot find value for key: \(key)")
+    public func value<T>(forName name: String) throws -> T {
+        guard let rawValue = self.rawValues[name] else {
+            throw Error.valueNotFound(name: name)
         }
         
         guard let value = rawValue as? T else {
-            fatalError("Cannot cast value to type: \(String(describing: T.self))")
+            throw Error.valueIsNotType(value: rawValue, type: T.self)
         }
         
         return value

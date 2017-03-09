@@ -24,8 +24,8 @@ public struct FactorySwift<T: Factoryable> {
         return Attributes(rawValues: generate(context, from: merge(self.defineBlock(), with: overrideBlock())))
     }
     
-    public func build(with overrideBlock: @escaping () -> [Attribute]) -> T {
-        return T.construct(from: self.attributes(with: overrideBlock))
+    public func build(with overrideBlock: @escaping () -> [Attribute]) throws -> T {
+        return try T.construct(from: self.attributes(with: overrideBlock))
     }
 }
 
@@ -56,7 +56,7 @@ extension FactorySwift {
         return self.attributes { overrides }
     }
 
-    public func build(with overrides: [Attribute] = []) -> T {
-        return self.build { overrides }
+    public func build(with overrides: [Attribute] = []) throws -> T {
+        return try self.build { overrides }
     }
 }

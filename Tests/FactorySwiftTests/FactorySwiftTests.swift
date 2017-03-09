@@ -14,8 +14,8 @@ struct Friend {
 }
 
 extension Friend : Factoryable {
-    static func construct(from attributes: Attributes) -> Friend {
-        return Friend(name: attributes.value(for: "name"))
+    static func construct(from attributes: Attributes) throws -> Friend {
+        return try Friend(name: attributes.value(forName: "name"))
     }
 }
 
@@ -27,7 +27,7 @@ class FactorySwiftTests: XCTestCase {
             ]
         }
         
-        let friend = factory.build()
+        let friend = try! factory.build()
         XCTAssertEqual(friend.name, "Serval")
     }
     
@@ -36,7 +36,7 @@ class FactorySwiftTests: XCTestCase {
             "name" => .generate { "Serval" }
         ])
         
-        let friend = factory.build()
+        let friend = try! factory.build()
         XCTAssertEqual(friend.name, "Serval")
     }
     
@@ -47,9 +47,21 @@ class FactorySwiftTests: XCTestCase {
             ]
         }
         
-        let friend = factory.build(with: [
+        let friend = try! factory.build(with: [
             "name" => .generate { "Jaguar" }
         ])
         XCTAssertEqual(friend.name, "Jaguar")
+    }
+    
+    func testThrowsValueNotFoundError() {
+        let factory = FactorySwift.define(type: Friend.self)
+        XCTAssertThrowsError(try factory.build())
+    }
+    
+    func testThrowsValueIsNotTypeError() {
+        let factory = FactorySwift.define(type: Friend.self, with: [
+            "name" => .generate { 42 },
+        ])
+        XCTAssertThrowsError(try factory.build())
     }
 }
