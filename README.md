@@ -2,7 +2,7 @@
 
 A factory library for building Swift objects inspired by [factory_girl](https://github.com/thoughtbot/factory_girl).
 
-### Basic usage
+## Basic usage
 
 ```swift
 struct Friend {
@@ -11,18 +11,18 @@ struct Friend {
 
 extension Friend : Factoryable {
     static func construct(from attributes: Attributes) throws -> Friend {
-        return try Friend(name: attributes.value(forName: "name"))
+        return try Friend(name: attributes |> "name")
     }
 }
 
-let factory = FactorySwift.define(type: Friend.self) {
-    return [
-        "name" => .value("Serval"),
-    ]
-}
+let factory = FactorySwift.define(type: Friend.self, with: [
+    "name" => .value("Serval"),
+])
 
 let friend = try! factory.build()
 ```
+
+## Defining factories
 
 ### Dynamic attributes
 
@@ -52,10 +52,27 @@ let factory = FactorySwift.define(type: Friend.self, with: [
 ])
 ```
 
-### Override attributes
+### Using factory attributes
 
 ```swift
-let friend = try! factory.build(type: Friend.self, with: [
+let factory = FactorySwift.define(type: Friend.self, with: [
+    // ...
+    "anotherClass" => .build(using: anotherFactory),
+])
+```
+
+## Building objects
+
+### Building object and override attributes
+
+```swift
+let friend = try! factory.build(with: [
     "name" => .value("Jaguar"),
 ])
+```
+
+### Building multiple objects
+
+```swift
+let friends = try! factory.build(count: 3)
 ```
