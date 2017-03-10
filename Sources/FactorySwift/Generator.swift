@@ -9,15 +9,15 @@
 import Foundation
 
 public struct Generator {
-    internal var apply: (Context) -> Any
+    internal var apply: (Context) throws -> Any
     
-    private init(apply: @escaping (Context) -> Any) {
+    private init(apply: @escaping (Context) throws -> Any) {
         self.apply = apply
     }
     
     /// Create a Generator that returns generated value
-    public static func generate(_ f: @escaping () -> Any) -> Generator {
-        return Generator { _ in f() }
+    public static func generate(_ f: @escaping () throws -> Any) -> Generator {
+        return Generator { _ in try f() }
     }
     
     /// Create a Generator that returns fixed value
@@ -26,8 +26,8 @@ public struct Generator {
     }
     
     /// Create a Generator that returns sequential value
-    public static func sequence(_ f: @escaping (Int) -> Any) -> Generator {
-        return Generator { f($0.count) }
+    public static func sequence(_ f: @escaping (Int) throws -> Any) -> Generator {
+        return Generator { try f($0.count) }
     }
         
     /// Create a Generator that returns value random picked from passed sequence

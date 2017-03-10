@@ -12,8 +12,8 @@ public struct Attribute {
     let name: String
     let generator: Generator
     
-    internal func generate(_ context: Context) -> Any {
-        return self.generator.apply(context)
+    internal func generate(_ context: Context) throws -> Any {
+        return try self.generator.apply(context)
     }
 }
 
