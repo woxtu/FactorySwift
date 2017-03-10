@@ -15,7 +15,7 @@ struct Friend {
 
 extension Friend : Factoryable {
     static func construct(from attributes: Attributes) throws -> Friend {
-        return try Friend(name: attributes.value(forName: "name"))
+        return try Friend(name: attributes |> "name")
     }
 }
 

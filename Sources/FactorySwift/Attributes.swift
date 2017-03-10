@@ -27,3 +27,9 @@ public struct Attributes {
         return value
     }
 }
+
+infix operator |>
+
+func |> <T>(attributes: Attributes, name: String) throws -> T {
+    return try attributes.value(forName: name)
+}
