@@ -20,18 +20,7 @@ extension Friend : Factoryable {
 }
 
 class FactorySwiftTests: XCTestCase {
-    func testBuildWithBlock() {
-        let factory = FactorySwift.define(type: Friend.self) {
-            return [
-                "name" => .generate { "Serval" }
-            ]
-        }
-        
-        let friend = try! factory.build()
-        XCTAssertEqual(friend.name, "Serval")
-    }
-    
-    func testBuildWithArray() {
+    func testBuildObject() {
         let factory = FactorySwift.define(type: Friend.self, with: [
             "name" => .generate { "Serval" }
         ])
@@ -40,17 +29,28 @@ class FactorySwiftTests: XCTestCase {
         XCTAssertEqual(friend.name, "Serval")
     }
     
-    func testBuildWithOverride() {
-        let factory = FactorySwift.define(type: Friend.self) {
-            return [
-                "name" => .generate { "Serval" }
-            ]
-        }
+    func testBuildObjectWithOverriding() {
+        let factory = FactorySwift.define(type: Friend.self, with: [
+            "name" => .generate { "Serval" }
+        ])
         
         let friend = try! factory.build(with: [
             "name" => .generate { "Jaguar" }
         ])
         XCTAssertEqual(friend.name, "Jaguar")
+    }
+    
+    func testBuildMultipleObjects() {
+        let factory = FactorySwift.define(type: Friend.self, with: [
+            "name" => .sequence { "friend\($0)" }
+        ])
+
+        let count = 3
+        let friends = try! factory.build(count: count)
+        XCTAssertEqual(friends.count, count)
+        for n in 0 ..< count {
+            XCTAssertEqual(friends[n].name, "friend\(n)")
+        }
     }
     
     func testThrowsValueNotFoundError() {

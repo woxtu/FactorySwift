@@ -27,7 +27,7 @@ class GeneratorTests: XCTestCase {
         let generator = Generator.sequence { $0 }
         XCTAssertEqual(try! generator.apply(context) as? Int, 0)
         
-        context.increment()
+        context.count = context.count + 1
         XCTAssertEqual(try! generator.apply(context) as? Int, 1)
     }
         

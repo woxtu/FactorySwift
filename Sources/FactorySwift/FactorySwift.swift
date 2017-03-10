@@ -19,13 +19,18 @@ public struct FactorySwift<T: Factoryable> {
         return FactorySwift(defineBlock: defineBlock)
     }
     
-    public func attributes(with overrideBlock: @escaping () -> [Attribute]) throws -> Attributes {
+    public func build(with overrideBlock: @escaping () -> [Attribute]) throws -> T {
         let context = Context()
-        return Attributes(rawValues: try generate(context, from: merge(self.defineBlock(), with: overrideBlock())))
+        let rawValues = try generate(context, from: merge(self.defineBlock(), with: overrideBlock()))
+        return try T.construct(from: Attributes(rawValues: rawValues))
     }
     
-    public func build(with overrideBlock: @escaping () -> [Attribute]) throws -> T {
-        return try T.construct(from: self.attributes(with: overrideBlock))
+    public func build(count: Int, with overrideBlock: @escaping () -> [Attribute]) throws -> [T] {
+        return try (0 ..< count).map {
+            let context = Context(count: $0)
+            let rawValues = try generate(context, from: merge(self.defineBlock(), with: overrideBlock()))
+            return try T.construct(from: Attributes(rawValues: rawValues))
+        }
     }
 }
 
@@ -52,11 +57,11 @@ extension FactorySwift {
         return self.define(type: type) { attributes }
     }
     
-    public func attributes(with overrides: [Attribute] = []) throws -> Attributes {
-        return try self.attributes { overrides }
-    }
-
     public func build(with overrides: [Attribute] = []) throws -> T {
         return try self.build { overrides }
+    }
+    
+    public func build(count: Int, with overrides: [Attribute] = []) throws -> [T] {
+        return try self.build(count: count) { overrides }
     }
 }

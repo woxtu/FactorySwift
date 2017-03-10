@@ -12,15 +12,11 @@ internal struct Context {
     internal var count = 0
     internal var rawValues = [String : Any]()
     
-    internal mutating func increment() {
-        self.count = self.count + 1
+    internal init(count: Int = 0) {
+        self.count = count
     }
     
     internal mutating func set(value: Any, forKey key: String) {
         self.rawValues[key] = value
-    }
-    
-    internal func value(forKey key: String) -> Any? {
-        return self.rawValues[key]
     }
 }
