@@ -30,9 +30,29 @@ public struct Generator {
         return Generator { try f($0.count) }
     }
         
-    /// Create a Generator that returns value random picked from passed sequence
+    /// Create a Generator that returns value random picked from a passed sequence
     public static func pick<S: Sequence>(from sequence: S) -> Generator {
         let array = Array(sequence)
         return Generator { _ in array[Int(arc4random_uniform(UInt32(array.count)))] }
+    }
+    
+    /// Create a Generator that returns value built using a passed factory
+    public static func build<T: Factoryable>(using factory: FactorySwift<T>, with overrideBlock: @escaping () -> [Attribute]) -> Generator {
+        return Generator { _ in try factory.build(with: overrideBlock) }
+    }
+    
+    /// Create a Generator that returns value built using a passed factory
+    public static func build<T: Factoryable>(using factory: FactorySwift<T>, with overrides: [Attribute] = []) -> Generator {
+        return Generator { _ in try factory.build(with: overrides) }
+    }
+
+    /// Create a Generator that returns values built using a passed factory
+    public static func build<T: Factoryable>(using factory: FactorySwift<T>, count: Int, with overrideBlock: @escaping () -> [Attribute]) -> Generator {
+        return Generator { _ in try factory.build(count: count, with: overrideBlock) }
+    }
+    
+    /// Create a Generator that returns values built using a passed factory
+    public static func build<T: Factoryable>(using factory: FactorySwift<T>, count: Int, with overrides: [Attribute] = []) -> Generator {
+        return Generator { _ in try factory.build(count: count, with: overrides) }
     }
 }

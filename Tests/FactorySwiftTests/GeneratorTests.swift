@@ -36,4 +36,14 @@ class GeneratorTests: XCTestCase {
         let generator = Generator.pick(from: 0 ..< 5)
         XCTAssert((0 ..< 5).contains(try! generator.apply(context) as! Int))
     }
+    
+    func testBuild() {
+        let factory = FactorySwift.define(type: Friend.self, with: [
+            "name" => .value("Serval"),
+        ])
+        
+        let context = Context()
+        let generator = Generator.build(using: factory)
+        XCTAssertNotNil(try! generator.apply(context) as? Friend)
+    }
 }
