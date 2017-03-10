@@ -29,17 +29,7 @@ public struct Generator {
     public static func sequence(_ f: @escaping (Int) -> Any) -> Generator {
         return Generator { f($0.count) }
     }
-    
-    /// Create a Generator that returns value depends another attribute
-    public static func depend(on name: String, _ f: @escaping (Any?) -> Any) -> Generator {
-        return Generator { f($0.rawValues[name]) }
-    }
-    
-    /// Create a Generator that returns value depends other attributes
-    public static func depend(on names: [String], _ f: @escaping ([Any?]) -> Any) -> Generator {
-        return Generator { context in f(names.map { context.rawValues[$0] }) }
-    }
-    
+        
     /// Create a Generator that returns value random picked from passed sequence
     public static func pick<S: Sequence>(from sequence: S) -> Generator {
         let array = Array(sequence)
