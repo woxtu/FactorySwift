@@ -64,6 +64,26 @@ let friend = try! factory.build(with: [
 let friends = try! factory.build(count: 3)
 ```
 
+## Installation
+
+### CocoaPods
+
+```
+pod 'FactorySwift', '~> 0.1.0'
+```
+
+### Carthage
+
+```
+github "FactorySwift" ~> 0.1.0
+```
+
+### Swift Package Manager
+
+```
+.Package(url: "https://github.com/woxtu/FactorySwift.git", majorVersion: 0, minor: 1)
+```
+
 ## License
 
 Licensed under the MIT License.
