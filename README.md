@@ -63,3 +63,7 @@ let friend = try! factory.build(with: [
 // Building multiple objects
 let friends = try! factory.build(count: 3)
 ```
+
+## License
+
+Licensed under the MIT License.
