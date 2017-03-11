@@ -13,37 +13,37 @@ class GeneratorTests: XCTestCase {
     func testGenerate() {
         let context = Context()
         let generator = Generator.generate { "Serval" }
-        XCTAssertEqual(try! generator.apply(context) as? String, "Serval")
+        XCTAssertEqual(try! generator.run(on: context) as? String, "Serval")
     }
     
     func testValue() {
         let context = Context()
         let generator = Generator.value("Serval")
-        XCTAssertEqual(try! generator.apply(context) as? String, "Serval")
+        XCTAssertEqual(try! generator.run(on: context) as? String, "Serval")
     }
     
     func testSequence() {
         var context = Context()
         let generator = Generator.sequence { $0 }
-        XCTAssertEqual(try! generator.apply(context) as? Int, 0)
+        XCTAssertEqual(try! generator.run(on: context) as? Int, 0)
         
         context.count = context.count + 1
-        XCTAssertEqual(try! generator.apply(context) as? Int, 1)
+        XCTAssertEqual(try! generator.run(on: context) as? Int, 1)
     }
         
     func testPick() {
         let context = Context()
         let generator = Generator.pick(from: 0 ..< 5)
-        XCTAssert((0 ..< 5).contains(try! generator.apply(context) as! Int))
+        XCTAssert((0 ..< 5).contains(try! generator.run(on: context) as! Int))
     }
     
     func testBuild() {
         let factory = FactorySwift.define(type: Friend.self, with: [
-            "name" => .value("Serval"),
+            "name": .value("Serval"),
         ])
         
         let context = Context()
         let generator = Generator.build(using: factory)
-        XCTAssertNotNil(try! generator.apply(context) as? Friend)
+        XCTAssertNotNil(try! generator.run(on: context) as? Friend)
     }
 }

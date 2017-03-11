@@ -22,7 +22,7 @@ extension Friend : Factoryable {
 class FactorySwiftTests: XCTestCase {
     func testBuildObject() {
         let factory = FactorySwift.define(type: Friend.self, with: [
-            "name" => .generate { "Serval" }
+            "name": .generate { "Serval" },
         ])
         
         let friend = try! factory.build()
@@ -31,18 +31,18 @@ class FactorySwiftTests: XCTestCase {
     
     func testBuildObjectWithOverriding() {
         let factory = FactorySwift.define(type: Friend.self, with: [
-            "name" => .generate { "Serval" }
+            "name": .generate { "Serval" },
         ])
         
         let friend = try! factory.build(with: [
-            "name" => .generate { "Jaguar" }
+            "name": .generate { "Jaguar" },
         ])
         XCTAssertEqual(friend.name, "Jaguar")
     }
     
     func testBuildMultipleObjects() {
         let factory = FactorySwift.define(type: Friend.self, with: [
-            "name" => .sequence { "friend\($0)" }
+            "name": .sequence { "friend\($0)" },
         ])
 
         let count = 3
@@ -60,7 +60,7 @@ class FactorySwiftTests: XCTestCase {
     
     func testThrowsValueIsNotTypeError() {
         let factory = FactorySwift.define(type: Friend.self, with: [
-            "name" => .generate { 42 },
+            "name": .generate { 42 },
         ])
         XCTAssertThrowsError(try factory.build())
     }

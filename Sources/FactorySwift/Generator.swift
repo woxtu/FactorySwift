@@ -9,10 +9,10 @@
 import Foundation
 
 public struct Generator {
-    internal var apply: (Context) throws -> Any
+    private var f: (Context) throws -> Any
     
-    private init(apply: @escaping (Context) throws -> Any) {
-        self.apply = apply
+    internal func run(on context: Context) throws -> Any {
+        return try self.f(context)
     }
     
     /// Create a Generator that returns generated value
@@ -37,22 +37,22 @@ public struct Generator {
     }
     
     /// Create a Generator that returns value built using a passed factory
-    public static func build<T: Factoryable>(using factory: FactorySwift<T>, with overrideBlock: @escaping () -> [Attribute]) -> Generator {
+    public static func build<T: Factoryable>(using factory: FactorySwift<T>, with overrideBlock: @escaping () -> [String : Generator]) -> Generator {
         return Generator { _ in try factory.build(with: overrideBlock) }
     }
     
     /// Create a Generator that returns value built using a passed factory
-    public static func build<T: Factoryable>(using factory: FactorySwift<T>, with overrides: [Attribute] = []) -> Generator {
+    public static func build<T: Factoryable>(using factory: FactorySwift<T>, with overrides: [String : Generator] = [:]) -> Generator {
         return Generator { _ in try factory.build(with: overrides) }
     }
 
     /// Create a Generator that returns values built using a passed factory
-    public static func build<T: Factoryable>(using factory: FactorySwift<T>, count: Int, with overrideBlock: @escaping () -> [Attribute]) -> Generator {
+    public static func build<T: Factoryable>(using factory: FactorySwift<T>, count: Int, with overrideBlock: @escaping () -> [String : Generator]) -> Generator {
         return Generator { _ in try factory.build(count: count, with: overrideBlock) }
     }
     
     /// Create a Generator that returns values built using a passed factory
-    public static func build<T: Factoryable>(using factory: FactorySwift<T>, count: Int, with overrides: [Attribute] = []) -> Generator {
+    public static func build<T: Factoryable>(using factory: FactorySwift<T>, count: Int, with overrides: [String : Generator] = [:]) -> Generator {
         return Generator { _ in try factory.build(count: count, with: overrides) }
     }
 }
