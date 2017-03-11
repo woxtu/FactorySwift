@@ -2,7 +2,7 @@
 
 A factory library for building Swift objects inspired by [factory_girl](https://github.com/thoughtbot/factory_girl).
 
-## Basic usage
+## Usage
 
 ```swift
 struct Friend {
@@ -16,63 +16,50 @@ extension Friend : Factoryable {
 }
 
 let factory = FactorySwift.define(type: Friend.self, with: [
-    "name" => .value("Serval"),
+    "name": .value("Serval"),
 ])
 
 let friend = try! factory.build()
 ```
 
-## Defining factories
-
-### Dynamic attributes
+### Defining factories
 
 ```swift
-let factory = FactorySwift.define(type: Friend.self, with: [
-    // ...
-    "createdAt" => .generate { NSDate() },
-])
-```
-
-### Transient attributes
-
-```swift
+// You can pass closures instead of dictionaries
 let factory = FactorySwift.define(type: Friend.self) {
+    // Set transient values
     let isCat = true
+
     return [
-        "name" => .value("Serval \(isCat ? " cat" : "")"),
-    ];
+        // Generate fixed values
+        "name": .value("Serval"),
+
+        // Generate values from a passed closure
+        "createdAt": .generate { NSDate() },
+
+        // Generate sequential values
+        "id": .sequence { $0 },
+
+        // Genetate values picked from sequence
+        "age": .pick(from: 0 ..< 100),
+
+        // Generate values using other factories
+        "role": .build(using: roleFactory),
+    ]
 }
 ```
 
-### Sequences
+### Building objects
 
 ```swift
-let factory = FactorySwift.define(type: Friend.self, with: [
-    "name" => .sequence { "friend\($0)" },
-])
-```
+// Building a object
+let friend = try! factory.build()
 
-### Using factory attributes
-
-```swift
-let factory = FactorySwift.define(type: Friend.self, with: [
-    // ...
-    "anotherClass" => .build(using: anotherFactory),
-])
-```
-
-## Building objects
-
-### Building object and override attributes
-
-```swift
+// Building a object and overriding attributes
 let friend = try! factory.build(with: [
-    "name" => .value("Jaguar"),
+    "name": .value("Jaguar"),
 ])
-```
 
-### Building multiple objects
-
-```swift
+// Building multiple objects
 let friends = try! factory.build(count: 3)
 ```
