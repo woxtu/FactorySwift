@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "9999"
+   LastUpgradeVersion = "0820"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_16"
-               BuildableName = "FactorySwift.framework"
-               BlueprintName = "FactorySwift"
+               BlueprintIdentifier = "436F49121E747E5300D06208"
+               BuildableName = "FactorySwift-iOS.framework"
+               BlueprintName = "FactorySwift-iOS"
                ReferencedContainer = "container:FactorySwift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,13 +32,22 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "OBJ_23"
-               BuildableName = "FactorySwiftTests.xctest"
-               BlueprintName = "FactorySwiftTests"
+               BlueprintIdentifier = "436F491A1E747E5300D06208"
+               BuildableName = "FactorySwift-iOSTests.xctest"
+               BlueprintName = "FactorySwift-iOSTests"
                ReferencedContainer = "container:FactorySwift.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "436F49121E747E5300D06208"
+            BuildableName = "FactorySwift-iOS.framework"
+            BlueprintName = "FactorySwift-iOS"
+            ReferencedContainer = "container:FactorySwift.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -55,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "OBJ_16"
-            BuildableName = "FactorySwift.framework"
-            BlueprintName = "FactorySwift"
+            BlueprintIdentifier = "436F49121E747E5300D06208"
+            BuildableName = "FactorySwift-iOS.framework"
+            BlueprintName = "FactorySwift-iOS"
             ReferencedContainer = "container:FactorySwift.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -70,6 +79,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "436F49121E747E5300D06208"
+            BuildableName = "FactorySwift-iOS.framework"
+            BlueprintName = "FactorySwift-iOS"
+            ReferencedContainer = "container:FactorySwift.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
