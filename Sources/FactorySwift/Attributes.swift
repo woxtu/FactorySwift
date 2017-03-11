@@ -30,6 +30,6 @@ public struct Attributes {
 
 infix operator |>
 
-func |> <T>(attributes: Attributes, name: String) throws -> T {
+public func |> <T>(attributes: Attributes, name: String) throws -> T {
     return try attributes.value(forName: name)
 }
