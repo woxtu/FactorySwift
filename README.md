@@ -1,5 +1,9 @@
 # FactorySwift
 
+[![CocoaPods](https://img.shields.io/cocoapods/v/FactorySwift.svg?style=flat-square)](https://cocoapods.org/pods/FactorySwift)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat-square)](https://github.com/Carthage/Carthage)
+[![Swift Package Manager](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg?style=flat-square)](https://github.com/apple/swift-package-manager)
+
 A factory library for building Swift objects inspired by [factory_girl](https://github.com/thoughtbot/factory_girl).
 
 ## Usage
@@ -20,6 +24,7 @@ let factory = FactorySwift.define(type: Friend.self, with: [
 ])
 
 let friend = try! factory.build()
+// Friend(name: "Serval")
 ```
 
 ### Defining factories
