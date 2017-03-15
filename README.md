@@ -45,7 +45,7 @@ let factory = FactorySwift.define(type: Friend.self) {
         // Generate sequential values
         "id": .sequence { $0 },
 
-        // Genetate values picked from sequence
+        // Generate values picked from sequence
         "age": .pick(from: 0 ..< 100),
 
         // Generate values using other factories
