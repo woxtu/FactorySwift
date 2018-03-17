@@ -1,4 +1,4 @@
-### https://raw.github.com/github/gitignore/be962308a6efb6d27446d13ee05b74948e616a01/Swift.gitignore
+### https://raw.github.com/github/gitignore/c0ce1f9bf10083b46f037a7faa96db9b9c51ddb9/Swift.gitignore
 
 # Xcode
 #
@@ -21,8 +21,7 @@ xcuserdata/
 
 ## Other
 *.moved-aside
-*.xccheckout
-*.xcscmblueprint
+*.xcuserstate
 
 ## Obj-C/Swift specific
 *.hmap
@@ -38,7 +37,6 @@ playground.xcworkspace
 #
 # Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
 # Packages/
-# Package.pins
 .build/
 
 # CocoaPods
@@ -61,7 +59,7 @@ Carthage/Build
 # It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
 # screenshots whenever they are needed.
 # For more information about the recommended setup visit:
-# https://docs.fastlane.tools/best-practices/source-control/#source-control
+# https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Gitignore.md
 
 fastlane/report.xml
 fastlane/Preview.html
@@ -69,7 +67,7 @@ fastlane/screenshots
 fastlane/test_output
 
 
-### https://raw.github.com/github/gitignore/be962308a6efb6d27446d13ee05b74948e616a01/Global/macOS.gitignore
+### https://raw.github.com/github/gitignore/c0ce1f9bf10083b46f037a7faa96db9b9c51ddb9/Global/macOS.gitignore
 
 *.DS_Store
 .AppleDouble
@@ -99,7 +97,7 @@ Temporary Items
 .apdisk
 
 
-### https://raw.github.com/github/gitignore/be962308a6efb6d27446d13ee05b74948e616a01/Global/Xcode.gitignore
+### https://raw.github.com/github/gitignore/c0ce1f9bf10083b46f037a7faa96db9b9c51ddb9/Global/Xcode.gitignore
 
 # Xcode
 #

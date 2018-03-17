@@ -20,7 +20,7 @@ extension Error : CustomStringConvertible {
             return "Cannot find value for name '\(name)'"
             
         case let .valueIsNotType(value: value, type: type):
-            return "Cannot cast value '\(value)' of \(type(of: value)) to \(type)"
+            return "Cannot cast value '\(value)' of \(Swift.type(of: value)) to \(type)"
         }
     }
 }
